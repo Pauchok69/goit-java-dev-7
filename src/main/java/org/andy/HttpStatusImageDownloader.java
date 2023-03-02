@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
 public class HttpStatusImageDownloader {
@@ -27,6 +28,6 @@ public class HttpStatusImageDownloader {
 
         HttpResponse<InputStream> response = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
 
-        Files.copy(response.body(), Paths.get(code + ".jpg"));
+        Files.copy(response.body(), Paths.get(code + ".jpg"), StandardCopyOption.REPLACE_EXISTING);
     }
 }
